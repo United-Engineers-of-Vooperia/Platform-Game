@@ -1,24 +1,16 @@
 extern mat4 modelViewProjection;
 
-vec4 position(mat4 transform_projection, vec4 vertex_position)
-{
-    return transform_projection * vertex_position;
-}
+vec4 position(mat4 transform_projection, vec4 vertex_position){
+    return transform_projection * vertex_position; }
 
 extern number blurRadius = 5.0;
 
-vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
-{
+vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords){
     vec4 sum = vec4(0.0);
-    
-    for (float i = -blurRadius; i <= blurRadius; i += 1.0)
-    {
-        for (float j = -blurRadius; j <= blurRadius; j += 1.0)
-        {
-            vec2 offset = vec2(i, j) / love_ScreenSize.xy;
-            sum += Texel(texture, texture_coords + offset);
-        }
-    }
 
-    return sum / ((2.0 * blurRadius + 1.0) * (2.0 * blurRadius + 1.0));
-}
+    for (float i = -blurRadius; i <= blurRadius; i += 1.0){
+        for (float j = -blurRadius; j <= blurRadius; j += 1.0){
+            vec2 offset = vec2(i, j) / love_ScreenSize.xy;
+            sum += Texel(texture, texture_coords + offset);}}
+
+    return sum / ((2.0 * blurRadius + 1.0) * (2.0 * blurRadius + 1.0));}
