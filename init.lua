@@ -1,12 +1,18 @@
+-- Add more library paths as needed
 Gamestate = require("libraries/hump.gamestate")
 Timer = require("libraries/hump.timer")
 audio = require("libraries/wave")
 SaveLoad = require("data/SaveLoad")
 bf = require("libraries/breezefield")
--- Add more library paths as needed
+
 
 -- levels
 require("levels/level1")
+
+-- shaders
+blur = love.graphics.newShader("shaders/blur_shader")
+blurRadius = 4.0
+blur:send("blurRadius", blurRadius)
 
 -- music
 chapter1Music = audio:newSource("levels/level1/Random_song(Guitar).mp3", "stream")

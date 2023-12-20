@@ -3,17 +3,24 @@ settings = {}
 local Button = require("main-menu.Settings.Settingsbutton")
 local goBack = Button.createButton("return", centerX, centerY - 120, 200, 50, "Return.. are you sure?")
 
+local background = love.graphics.newImage("levels/level1/level1Back.png")
+local foreground = love.graphics.newImage("levels/level1/level1.png")
+
 function settings:enter()
-    menuMusic:play()
 end
 
 function settings:leave()
-    menuMusic:stop()
-    love.graphics.setCanvas()
 end
 
 function settings:draw()
+    love.graphics.setShader(blur)
+    love.graphics.draw(background, -20)
+    love.graphics.draw(foreground, -20)
+    love.graphics.setShader()
+
     goBack:render()
+
+    debugDraw()
 end
 
 function settings:update(dt)

@@ -19,8 +19,10 @@ local function createButton(buttonName, x, y, width, height, buttonText)
     end
 
     function button:render()
-        love.graphics.rectangle("line", self.x, self.y, self.width, self.height)
-
+        love.graphics.setColor(1, 1, 1, 0.3)
+        love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
+        love.graphics.setColor(1, 1, 1, 1)
+        
         -- Calculate the center of the button
         local centerX = self.x + self.width / 2
         local centerY = self.y + self.height / 2

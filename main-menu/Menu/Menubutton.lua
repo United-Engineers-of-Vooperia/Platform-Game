@@ -19,11 +19,14 @@ local function createButton(buttonName, x, y, width, height, buttonText)
             love.event.quit()
         elseif self.buttonName == "play" then
             Gamestate.switch(level1)
+            menuMusic:stop()
         end
     end
 
     function button:render()
-        love.graphics.rectangle("line", self.x, self.y, self.width, self.height)
+        love.graphics.setColor(1, 1, 1, 0.3)
+        love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
+        love.graphics.setColor(1, 1, 1, 1)
 
         -- Calculate the center of the button
         local centerX = self.x + self.width / 2

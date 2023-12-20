@@ -7,22 +7,28 @@ local play = Button.createButton("play", centerX, centerY - 120, 200, 50, "Play"
 local options = Button.createButton("options", centerX, centerY - 60, 200, 50, "Options")
 local quit = Button.createButton("quit", centerX, centerY - 0, 200, 50, "Quit")
 
-
+local background = love.graphics.newImage("levels/level1/level1Back.png")
+local foreground = love.graphics.newImage("levels/level1/level1.png")
 
 function menu:enter()
     menuMusic:setVolume(volume - 0.3)
-    menuMusic:play()
+    
 end
 
 function menu:leave()
-    menuMusic:stop()
-    love.graphics.setCanvas()
 end
 
 function menu:draw()
+    love.graphics.setShader(blur)
+    love.graphics.draw(background, -20)
+    love.graphics.draw(foreground, -20)
+    love.graphics.setShader()
+
     play:render()
     options:render()
     quit:render()
+
+    debugDraw()
 end
 
 function menu:update(dt)

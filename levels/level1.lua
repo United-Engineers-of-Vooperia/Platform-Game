@@ -33,6 +33,7 @@ end
 function level1:keyreleased(button)
     if button == "escape" then
         Gamestate.switch(menu)
+        menuMusic:play()
     end
 end
 

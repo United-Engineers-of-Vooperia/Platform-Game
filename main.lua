@@ -7,6 +7,7 @@ function love.load()
     debugLoad()
     Gamestate.registerEvents()
     Gamestate.switch(menu)
+    menuMusic:play()
 end
 
 function love.draw()

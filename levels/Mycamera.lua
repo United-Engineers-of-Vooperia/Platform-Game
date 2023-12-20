@@ -1,14 +1,14 @@
 Camera = require("libraries/hump.camera")
 cam = Camera()
 
-local posX, posY = 100, 100
+local posX, posY = 980, 540
 local speed = 200
 local zoomLevel = 1
 local minZoom = 0.8
 local maxZoom = 2.0
 
 function resetCam()
-    posX, posY = 100, 100
+    posX, posY = 980, 540
     zoomLevel = 1
 end
 
