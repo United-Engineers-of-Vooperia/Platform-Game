@@ -1,16 +1,30 @@
+// External matrix for model view projection
 extern mat4 modelViewProjection;
 
-vec4 position(mat4 transform_projection, vec4 vertex_position){
-    return transform_projection * vertex_position; }
+// Function to transform and project vertex position
+vec4 position(mat4 transform_projection, vec4 vertex_position) {
+    return transform_projection * vertex_position;
+}
 
+// External parameter for blur radius with a default value of 5.0
 extern number blurRadius = 5.0;
 
-vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords){
+// Main effect function for the shader
+vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) {
+    // Initialize a sum variable to accumulate blurred color values
     vec4 sum = vec4(0.0);
 
-    for (float i = -blurRadius; i <= blurRadius; i += 1.0){
-        for (float j = -blurRadius; j <= blurRadius; j += 1.0){
+    // Loop over neighboring pixels to calculate the blur
+    for (float i = -blurRadius; i <= blurRadius; i += 1.0) {
+        for (float j = -blurRadius; j <= blurRadius; j += 1.0) {
+            // Calculate the offset based on the current iteration
             vec2 offset = vec2(i, j) / love_ScreenSize.xy;
-            sum += Texel(texture, texture_coords + offset);}}
 
-    return sum / ((2.0 * blurRadius + 1.0) * (2.0 * blurRadius + 1.0));}
+            // Accumulate the color values using texture sampling
+            sum += Texel(texture, texture_coords + offset);
+        }
+    }
+
+    // Normalize the sum by the total number of samples
+    return sum / ((2.0 * blurRadius + 1.0) * (2.0 * blurRadius + 1.0));
+}

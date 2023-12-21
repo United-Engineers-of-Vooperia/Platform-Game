@@ -1,10 +1,13 @@
+-- Set debug mode
 debug = true
 
+-- Load debug libraries if debug mode is enabled
 if debug == true then
     require("libraries/lovedebug")
     debugGraph = require("libraries/debugGraph")
 end
 
+-- Function to draw debug information
 function debugDraw()
     if debug == true then
         fpsGraph:draw()
@@ -14,6 +17,7 @@ function debugDraw()
     end
 end
 
+-- Function to initialize debug tools
 function debugLoad()
     if debug == true then
         fpsGraph = debugGraph:new('fps', 0, 0, nil, nil, 0.005)
@@ -22,6 +26,7 @@ function debugLoad()
     end
 end
 
+-- Function to update debug information
 function debugUpdate(dt)
     if debug == true then
         fpsGraph:update(dt)
@@ -31,6 +36,7 @@ function debugUpdate(dt)
     end
 end
 
+-- Enable debug key bindings
 if debug == true then
     function love.keypressed(key)
         if key == "f1" then
@@ -39,6 +45,7 @@ if debug == true then
             print(str, 20, 20)
         end
 
-        --print(key)
+        -- Uncomment the line below to print the pressed key
+        -- print(key)
     end
 end
