@@ -54,15 +54,13 @@ function createObject(world, objectType, objectClass, x, y, width, height, rotat
     return newObj
 end
 
--- Function to destroy a game object
-function destroyGameObject(gameObjects)
-    -- Remove the object from the table
-    for i, obj in ipairs(gameObjects) do
+-- Function to destroy all game objects
+function destroyObjects()
+    for _, obj in ipairs(gameObjects) do
         -- Destroy the Breezefield collider
         obj:destroy()
-
-        -- Remove the object from the gameObjects table
-        table.remove(gameObjects, i)
-        break
     end
+
+    -- Clear the gameObjects table
+    gameObjects = {}
 end

@@ -20,7 +20,6 @@ function level1:enter()
     -- Reset camera position
     resetCam()
 
-
     -- Create the environment objects
     ground.new(world, 220, 1020, 650, 700, 0.06)    -- Start pillar
     ground.new(world, 765, 560, 200, 30, 0.08)      -- Swinging platform
@@ -31,9 +30,7 @@ function level1:enter()
     wall.new(world, 1970, 500, 100, 1000)           -- Right wall
     wall.new(world, 0, -50, 5000, 100)              -- Ceiling
     killBlock.new(world, 0, 1200, 5000, 100)        -- Death Zone
-    exit.new(world, 1969, 600, 100, 100)           -- Level Exit
-
-    ball.new(world, 220, 200, 20)
+    exit.new(world, 1969, 600, 100, 100)            -- Level Exit
 end
 
 -- Function called when leaving the level
@@ -41,7 +38,7 @@ function level1:leave()
     -- Stop the music when leaving the level
     chapter1Music:stop()
 
-    destroyGameObject(gameObjects)
+    destroyObjects()
 end
 
 -- Update function for the level
