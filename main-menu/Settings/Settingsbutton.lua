@@ -44,8 +44,10 @@ local function createButton(buttonName, x, y, width, height, buttonText)
         local textX = centerX - font:getWidth(self.text) / 2
         local textY = centerY - font:getHeight() / 2
 
+        love.graphics.setShader()
         -- Draw the text
         love.graphics.print(self.text, textX, textY)
+        love.graphics.setShader(blur)
     end
 
     -- Return the created button object

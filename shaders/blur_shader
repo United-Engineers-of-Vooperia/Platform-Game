@@ -26,5 +26,10 @@ vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) 
     }
 
     // Normalize the sum by the total number of samples
-    return sum / ((2.0 * blurRadius + 1.0) * (2.0 * blurRadius + 1.0));
+    sum /= ((2.0 * blurRadius + 1.0) * (2.0 * blurRadius + 1.0));
+
+    // Apply the original color's alpha value
+    sum.a = color.a;
+
+    return sum;
 }

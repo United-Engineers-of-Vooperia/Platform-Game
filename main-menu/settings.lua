@@ -23,10 +23,10 @@ function settings:draw()
     love.graphics.setShader(blur)
     love.graphics.draw(background, -20)
     love.graphics.draw(foreground, -20)
-    love.graphics.setShader()
 
-    -- Render the "Go Back" button
+    -- Apply a blur shader and render the "Go Back" button
     goBack:render()
+    love.graphics.setShader()
 
     -- Call the debugDraw function
     debugDraw()

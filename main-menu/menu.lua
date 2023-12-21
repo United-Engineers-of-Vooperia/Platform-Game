@@ -27,12 +27,13 @@ function menu:draw()
     love.graphics.setShader(blur)
     love.graphics.draw(background, -20)
     love.graphics.draw(foreground, -20)
-    love.graphics.setShader()
     
-    -- Render the buttons for Play, Options, and Quit
+    
+    -- Apply a blur shader and render the buttons for Play, Options, and Quit
     play:render()
     options:render()
     quit:render()
+    love.graphics.setShader()
 
     -- Call the debugDraw function
     debugDraw()

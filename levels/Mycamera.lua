@@ -15,7 +15,8 @@ local maxZoom = 2.0
 function resetCam()
     posX, posY = 980, 540
     zoomLevel = 1
-    speed = 200
+
+    cam:zoomTo(zoomLevel)
 end
 
 -- Function called when the mouse wheel is moved to handle zooming

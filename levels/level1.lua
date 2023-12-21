@@ -5,21 +5,22 @@ level1 = {}
 local background = love.graphics.newImage("levels/level1/level1Back.png")
 local foreground = love.graphics.newImage("levels/level1/level1.png")
 
--- Load necessary modules for object creation and camera handling
+-- Load necessary modules
 require("levels/objCreation")
 require("levels/Mycamera")
+require("levels/entities/player")
 
--- Create a Breezefield world with gravity
-world = bf.newWorld(0, 90.81, true)
-
--- Create the environment
-ground.new(world, 220, 1020, 650, 700, 0.06)  -- Start pillar
-ground.new(world, 765, 560, 200, 30, 0.08)    -- Swinging platform
-ground.new(world, 1190, 830, 340, 700, -0.12) -- Second pillar
-ground.new(world, 1700, 500, 90, 1000, 0.07)  -- Third/tall pillar
-ground.new(world, 1790, 830, 340, 700, 0.07)  -- Third/Fourth pillar
-wall.new(world, -50, 500, 100, 1000)          -- Left wall
-wall.new(world, 0, -50, 5000, 100)            -- Ceiling
+-- Create the environment objects
+ground.new(world, 220, 1020, 650, 700, 0.06)    -- Start pillar
+ground.new(world, 765, 560, 200, 30, 0.08)      -- Swinging platform
+ground.new(world, 1190, 830, 340, 700, -0.12)   -- Second pillar
+ground.new(world, 1600, 705, 100, 1000, 0.085)  -- Third/tall pillar
+ground.new(world, 1790, 620, 340, 100, 0.1)     -- Third/Fourth pillar
+wall.new(world, -50, 500, 100, 1000)            -- Left wall
+wall.new(world, 1970, 500, 100, 1000)           -- Right wall
+wall.new(world, 0, -50, 5000, 100)              -- Ceiling
+killBlock.new(world, 0, 1200, 5000, 100)        -- Death Zone
+exit.new(world, 1969, 600, 100, 100)           -- Level Exit
 
 -- Function called when entering the level
 function level1:enter()

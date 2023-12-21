@@ -6,6 +6,9 @@ audio = require("libraries/wave")
 SaveLoad = require("data/SaveLoad")
 bf = require("libraries/breezefield")
 
+-- Create a Breezefield world with gravity
+world = bf.newWorld(0, 90.81, true)
+
 -- Load game levels
 require("levels/level1")
 
