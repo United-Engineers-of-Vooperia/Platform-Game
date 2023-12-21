@@ -1,6 +1,9 @@
 -- Required Module to create objects
 require("levels/levelObjTypes")
 
+-- Table to store game objects
+local gameObjects = {}
+
 -- Function to create different types of objects in the physics world
 function createObject(world, objectType, objectClass, x, y, width, height, rotated)
     -- Create a new object table
@@ -39,6 +42,9 @@ function createObject(world, objectType, objectClass, x, y, width, height, rotat
             print("Error creating " .. objectType .. ", with Object Class of ", objectClass)
             return nil
         end
+
+        -- Store the created object in the gameObjects table
+        table.insert(gameObjects, newObj)
     else
         -- Handle the error by printing an error message
         print("Error creating " .. objectType .. ", with Object Class of ", objectClass)
@@ -46,4 +52,17 @@ function createObject(world, objectType, objectClass, x, y, width, height, rotat
     end
 
     return newObj
+end
+
+-- Function to destroy a game object
+function destroyGameObject(gameObjects)
+    -- Remove the object from the table
+    for i, obj in ipairs(gameObjects) do
+        -- Destroy the Breezefield collider
+        obj:destroy()
+
+        -- Remove the object from the gameObjects table
+        table.remove(gameObjects, i)
+        break
+    end
 end

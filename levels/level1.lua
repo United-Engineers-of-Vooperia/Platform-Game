@@ -10,17 +10,7 @@ require("levels/objCreation")
 require("levels/Mycamera")
 require("levels/entities/player")
 
--- Create the environment objects
-ground.new(world, 220, 1020, 650, 700, 0.06)    -- Start pillar
-ground.new(world, 765, 560, 200, 30, 0.08)      -- Swinging platform
-ground.new(world, 1190, 830, 340, 700, -0.12)   -- Second pillar
-ground.new(world, 1600, 705, 100, 1000, 0.085)  -- Third/tall pillar
-ground.new(world, 1790, 620, 340, 100, 0.1)     -- Third/Fourth pillar
-wall.new(world, -50, 500, 100, 1000)            -- Left wall
-wall.new(world, 1970, 500, 100, 1000)           -- Right wall
-wall.new(world, 0, -50, 5000, 100)              -- Ceiling
-killBlock.new(world, 0, 1200, 5000, 100)        -- Death Zone
-exit.new(world, 1969, 600, 100, 100)           -- Level Exit
+
 
 -- Function called when entering the level
 function level1:enter()
@@ -29,12 +19,29 @@ function level1:enter()
     chapter1Music:play()
     -- Reset camera position
     resetCam()
+
+
+    -- Create the environment objects
+    ground.new(world, 220, 1020, 650, 700, 0.06)    -- Start pillar
+    ground.new(world, 765, 560, 200, 30, 0.08)      -- Swinging platform
+    ground.new(world, 1190, 830, 340, 700, -0.12)   -- Second pillar
+    ground.new(world, 1600, 705, 100, 1000, 0.085)  -- Third/tall pillar
+    ground.new(world, 1790, 620, 340, 100, 0.1)     -- Third/Fourth pillar
+    wall.new(world, -50, 500, 100, 1000)            -- Left wall
+    wall.new(world, 1970, 500, 100, 1000)           -- Right wall
+    wall.new(world, 0, -50, 5000, 100)              -- Ceiling
+    killBlock.new(world, 0, 1200, 5000, 100)        -- Death Zone
+    exit.new(world, 1969, 600, 100, 100)           -- Level Exit
+
+    ball.new(world, 220, 200, 20)
 end
 
 -- Function called when leaving the level
 function level1:leave()
     -- Stop the music when leaving the level
     chapter1Music:stop()
+
+    destroyGameObject(gameObjects)
 end
 
 -- Update function for the level
