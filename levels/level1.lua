@@ -8,8 +8,6 @@ local foreground = love.graphics.newImage("levels/level1/level1.png")
 -- Load necessary modules
 require("levels/objCreation")
 require("levels/Mycamera")
-require("levels/entities/player")
-
 
 
 -- Function called when entering the level
