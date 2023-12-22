@@ -39,7 +39,7 @@ function createObject(world, objectType, objectClass, x, y, width, height, rotat
             newObj:setType("dynamic")
         else
             -- Handle the error for an unsupported object class
-            print("Error creating " .. objectType .. ", with Object Class of ", objectClass)
+            print("Error creating " .. objectType .. ", with Object Class of: " .. objectClass)
             return nil
         end
 
@@ -47,7 +47,7 @@ function createObject(world, objectType, objectClass, x, y, width, height, rotat
         table.insert(gameObjects, newObj)
     else
         -- Handle the error by printing an error message
-        print("Error creating " .. objectType .. ", with Object Class of ", objectClass)
+        print("Error creating " .. objectType .. ", with Object Class of: " .. objectClass)
         return nil
     end
 

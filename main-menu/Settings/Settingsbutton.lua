@@ -19,6 +19,8 @@ local function createButton(buttonName, x, y, width, height, buttonText)
     function button:onPointerRelease()
         if self.buttonName == "return" then
             Gamestate.switch(menu)
+        elseif self.buttonName == "github" then
+            love.system.openURL("https://github.com/United-Engineers-of-Vooperia/Platform-Game")
         end
     end
 

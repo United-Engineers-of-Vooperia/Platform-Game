@@ -4,6 +4,7 @@ settings = {}
 -- Load necessary modules and create a button using the SettingsButton module
 local Button = require("main-menu.Settings.Settingsbutton")
 local goBack = Button.createButton("return", centerX, centerY - 120, 200, 50, "Return.. are you sure?")
+local github = Button.createButton("github", centerX + 950, centerY + 450, 100, 50, "Project Link!")
 
 -- Load background and foreground images for the menu
 local background = love.graphics.newImage("levels/level1/level1Back.png")
@@ -26,6 +27,7 @@ function settings:draw()
 
     -- Apply a blur shader and render the "Go Back" button
     goBack:render()
+    github:render()
     love.graphics.setShader()
 
     -- Call the debugDraw function
@@ -44,6 +46,8 @@ function settings:mousereleased(x, y, button)
         -- Check if the mouse pointer is inside the "Go Back" button
         if goBack:isPointInside(x, y) then
             goBack:onPointerRelease()
+        elseif github:isPointInside(x, y) then
+            github:onPointerRelease()
         end
     end
 end

@@ -2,9 +2,11 @@
 -- Import necessary libraries
 Gamestate = require("libraries/hump.gamestate")
 Timer = require("libraries/hump.timer")
+Signal = require("libraries/hump.signal")
 audio = require("libraries/wave")
 SaveLoad = require("data/SaveLoad")
 bf = require("libraries/breezefield")
+anim8 = require("libraries/anim8")
 
 -- Create a Breezefield world with gravity
 world = bf.newWorld(0, 90.81, true)
