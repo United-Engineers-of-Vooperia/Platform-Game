@@ -39,14 +39,14 @@ end
 -- Function to update the camera position based on input
 function updateCam(dt)
     -- Check arrow keys for movement with diagonal support
-    if love.keyboard.isDown("d") then
+    if love.keyboard.isDown("d") or love.keyboard.isDown("right") then
         posX = posX + (speed * dt)
-    elseif love.keyboard.isDown("a") then
+    elseif love.keyboard.isDown("a") or love.keyboard.isDown("left") then
         posX = posX - (speed * dt)
     end
-    if love.keyboard.isDown("s") then
+    if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
         posY = posY + (speed * dt)
-    elseif love.keyboard.isDown("w") then
+    elseif love.keyboard.isDown("w") or love.keyboard.isDown("up") then
         posY = posY - (speed * dt)
     end
 
