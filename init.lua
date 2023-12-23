@@ -8,9 +8,6 @@ SaveLoad = require("data/SaveLoad")
 bf = require("libraries/breezefield")
 anim8 = require("libraries/anim8")
 
--- Create a Breezefield world with gravity
-world = bf.newWorld(0, 90.81, true)
-
 -- Load game levels
 require("levels/level1")
 

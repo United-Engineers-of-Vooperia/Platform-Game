@@ -1,5 +1,5 @@
 -- Set debug mode
-debug = true
+debug = false
 
 -- Load debug libraries if debug mode is enabled
 if debug == true then

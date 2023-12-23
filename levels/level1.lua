@@ -13,6 +13,9 @@ require("levels/entities/player")
 
 -- Function called when entering the level
 function level1:enter()
+    -- Create a Breezefield world with gravity
+    world = bf.newWorld(0, 90.81, true)
+
     -- Set volume and play music for the chapter
     chapter1Music:setVolume(volume)
     chapter1Music:play()
@@ -39,9 +42,6 @@ end
 function level1:leave()
     -- Stop the music when leaving the level
     chapter1Music:stop()
-
-
-    destroyObject(player)
     destroyAllObjects()
 end
 
@@ -49,23 +49,25 @@ end
 function level1:update(dt)
     -- Update music and camera
     chapter1Music:update(dt)
-    updateCam(dt, false, player)
-    -- Update the world
-    world:update(dt)
+    --updateCam(dt, false, player)
 
+    -- Update the player
+    player.x = player.x + 20 * dt
+    player.y = player.y - 5 * dt
+    player:setPosition(player.x, player.y)
+    
+
+    -- Print player Position. debug tool, will be removed later
     function love.keypressed(key)
         if key == "p" then
             print(math.floor(player.x), math.floor(player.y))
         end
     end
 
-    player.x = player.x + 20 * dt
-    player.y = player.y - 5 * dt
-    player:setPosition(player.x, player.y)
+    -- Update the world
+    world:update(dt)
     player:update(dt)
 end
-
-
 
 -- Function called when a key is released
 function level1:keyreleased(button)
