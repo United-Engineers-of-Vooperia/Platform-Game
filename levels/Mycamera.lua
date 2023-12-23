@@ -12,9 +12,9 @@ local minZoom = 0.8
 local maxZoom = 2.0
 
 -- Function to reset the camera to initial parameters
-function resetCam()
-    posX, posY = 980, 540
-    zoomLevel = 1
+function resetCam(x, y, z)
+    posX, posY = x or 980, y or 540
+    zoomLevel = z or 1
 
     cam:zoomTo(zoomLevel)
 end
@@ -37,27 +37,35 @@ function love.wheelmoved(x, y)
 end
 
 -- Function to update the camera position based on input
-function updateCam(dt)
-    -- Check arrow keys for movement with diagonal support
-    if love.keyboard.isDown("d") or love.keyboard.isDown("right") then
-        posX = posX + (speed * dt)
-    elseif love.keyboard.isDown("a") or love.keyboard.isDown("left") then
-        posX = posX - (speed * dt)
-    end
-    if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
-        posY = posY + (speed * dt)
-    elseif love.keyboard.isDown("w") or love.keyboard.isDown("up") then
-        posY = posY - (speed * dt)
+function updateCam(dt, movement, object)
+    if movement == nil or movement == true then
+        -- Check arrow keys for movement with diagonal support
+        if love.keyboard.isDown("d") or love.keyboard.isDown("right") then
+            posX = posX + (speed * dt)
+        elseif love.keyboard.isDown("a") or love.keyboard.isDown("left") then
+            posX = posX - (speed * dt)
+        end
+        if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
+            posY = posY + (speed * dt)
+        elseif love.keyboard.isDown("w") or love.keyboard.isDown("up") then
+            posY = posY - (speed * dt)
+        end
+
+        -- Set the base speed for camera movement
+        speed = 200
+
+        -- Double the speed when the left shift key is held down
+        if love.keyboard.isDown("lshift") then
+            speed = 400
+        end
+
+        cam:lookAt(posX, posY)
     end
 
-    -- Set the base speed for camera movement
-    speed = 200
-
-    -- Double the speed when the left shift key is held down
-    if love.keyboard.isDown("lshift") then
-        speed = 400
+    if object then
+        cam:lookAt(object.x, object.y)
     end
 
     -- Move the camera to the specified position
-    cam:lookAt(posX, posY)
+    
 end

@@ -49,7 +49,7 @@ end
 function level1:update(dt)
     -- Update music and camera
     chapter1Music:update(dt)
-    updateCam(dt)
+    updateCam(dt, false, player)
     -- Update the world
     world:update(dt)
 
