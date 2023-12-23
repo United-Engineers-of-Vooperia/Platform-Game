@@ -6,7 +6,7 @@ local background = love.graphics.newImage("levels/level1/level1Back.png")
 local foreground = love.graphics.newImage("levels/level1/level1.png")
 
 -- Load necessary modules
-require("levels/objCreation")
+require("levels/objHandler")
 require("levels/Mycamera")
 require("levels/entities/player")
 
@@ -28,11 +28,11 @@ function level1:enter()
     wall.new(world, -50, 500, 100, 1000)            -- Left wall
     wall.new(world, 1970, 500, 100, 1000)           -- Right wall
     wall.new(world, 0, -50, 5000, 100)              -- Ceiling
-    killBlock.new(world, 1100, 1200, 1500, 100)        -- Death Zone
+    killBlock.new(world, 1100, 1200, 1500, 100)     -- Death Zone
     exit.new(world, 1910, 620, 100, 100)            -- Level Exit
 
     -- Create entities
-    player.new(world, 220, 600, 50, 50)
+    player = player.new(world, 220, 600, 50, 50)
 end
 
 -- Function called when leaving the level
@@ -40,7 +40,9 @@ function level1:leave()
     -- Stop the music when leaving the level
     chapter1Music:stop()
 
-    destroyObjects()
+
+    destroyObject(player)
+    destroyAllObjects()
 end
 
 -- Update function for the level
@@ -53,9 +55,14 @@ function level1:update(dt)
 
     function love.keypressed(key)
         if key == "p" then
-            Timer.after(1, function() print(player.x, player.y) end)
+            print(math.floor(player.x), math.floor(player.y))
         end
     end
+
+    player.x = player.x + 20 * dt
+    player.y = player.y - 5 * dt
+    player:setPosition(player.x, player.y)
+    player:update(dt)
 end
 
 

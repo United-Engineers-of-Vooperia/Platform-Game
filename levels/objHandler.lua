@@ -43,23 +43,53 @@ function createObject(world, objectType, objectClass, x, y, width, height, rotat
             return nil
         end
 
-        -- Store the created object in the gameObjects table
-        table.insert(gameObjects, newObj)
+        -- Store the created object in the gameObjects table along with its variables
+        local objectData = {obj = newObj, x = x, y = y, width = width, height = height, rotated = rotated}
+        table.insert(gameObjects, objectData)
     else
         -- Handle the error by printing an error message
         print("Error creating " .. objectType .. ", with Object Class of: " .. objectClass)
         return nil
     end
 
+    -- Print statements for debugging
+    print("Object created:", newObj)
+    print("Object variables:", x, y, width, height, rotated)
+
     return newObj
 end
 
--- Function to destroy all game objects
-function destroyObjects()
-    for _, obj in ipairs(gameObjects) do
-        -- Destroy the Breezefield collider
-        obj:destroy()
+
+-- Function to destroy a specific game object
+function destroyObject(obj)
+    for i, objectData in ipairs(gameObjects) do
+        if objectData.obj == obj then
+            -- Print debug information
+            print("Destroying object:", obj)
+            print("Object data before destruction:", objectData)
+
+            obj:destroy()
+
+            -- Remove the object data from the table
+            table.remove(gameObjects, i)
+
+            -- Print debug information after destruction
+            print("Object destroyed. Remaining objects:", #gameObjects)
+            break
+        end
     end
+end
+
+-- Function to destroy all game objects
+function destroyAllObjects()
+    for _, objectData in ipairs(gameObjects) do
+        -- Destroy the Breezefield collider
+        objectData.obj:destroy()
+    end
+
+    -- Print debug information before clearing gameObjects table
+    print("Destroying all objects...")
+    print("Destroyed " .. #gameObjects .. " objects")
 
     -- Clear the gameObjects table
     gameObjects = {}
