@@ -1,5 +1,23 @@
--- Add more library paths as needed
--- Import necessary libraries
+--[[ 
+    Add more library paths as needed
+    Import necessary libraries
+
+    Detection of stray globals
+    (this just means they havent been used yet,
+    useful to find code that isnt neccisary or doesnt do anything;
+    this can be copy and pasted to other parts of the code-
+    to check for stray variables)
+
+    If text goes by too fast, you can open console with 'alt + F8'
+]]
+-- Set the default for Global Variables
+local pre_globals = {}
+if debug == true then
+    for n, v in pairs(_G) do
+    pre_globals[n] = v
+    end
+end
+-- Libraries
 Gamestate = require("libraries/hump.gamestate")
 Timer = require("libraries/hump.timer")
 Signal = require("libraries/hump.signal")
@@ -72,3 +90,24 @@ end
 
 -- Call the window function to set up the game window
 window()
+
+--[[
+    Check for Difference in Stray Variables.
+    'print' can be changed to 'assert' to stop the game,
+    immedietly when detection of stray global variables
+
+    falseCount refers to how many variables it detects that-
+    ARENT stay.
+]]
+local falseCount = 0
+if debug == true then
+    for n, v in pairs(_G) do
+        local Stray = n == 'bf' or pre_globals[n] ~= nil
+        if not Stray then
+            print('stray global variable: '.. n)
+            falseCount = falseCount + 1
+        end
+    end
+end
+print() -- Makes a space for better readability
+print("Total number of 'true' variables:", falseCount) -- 'true' just refers that they arent stay

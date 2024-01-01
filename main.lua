@@ -33,8 +33,8 @@ end
 -- Function called to update game logic
 function love.update(dt)
     -- Update timers and game state
-    Timer:update(dt)
     Gamestate.update(dt)
+    Timer.update(dt)
 
     -- Call the debugUpdate function
     debugUpdate(dt)

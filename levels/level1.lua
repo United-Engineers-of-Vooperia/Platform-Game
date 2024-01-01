@@ -10,12 +10,11 @@ require("levels/objHandler")
 require("levels/Mycamera")
 require("levels/entities/player")
 
+-- Create a Breezefield world with gravity
+local world = bf.newWorld(0, 90.81, true)
 
 -- Function called when entering the level
 function level1:enter()
-    -- Create a Breezefield world with gravity
-    world = bf.newWorld(0, 90.81, true)
-
     -- Set volume and play music for the chapter
     chapter1Music:setVolume(volume)
     chapter1Music:play()
@@ -34,9 +33,18 @@ function level1:enter()
     killBlock.new(world, 1100, 1200, 1500, 100)     -- Death Zone
     exit.new(world, 1910, 620, 100, 100)            -- Level Exit
 
-    -- Create entities
-    player = player.new(world, 220, 600, 50, 50)
+    -- Setup the Player
+    player:setPosition(220, 600)           -- Sets starting position
+    player:applyForce(0, 1000000000000000) -- Sets a huge downward force, essentailly makes-
+                                           -- player start on the surface below it automatically
 end
+
+--[[
+    Create entities.
+    These are persistant in current version, 
+    will look for a more elegant solution in future versions.
+]] 
+player = player.new(world, 220, 600, 50, 50)
 
 -- Function called when leaving the level
 function level1:leave()
@@ -50,12 +58,6 @@ function level1:update(dt)
     -- Update music and camera
     chapter1Music:update(dt)
     updateCam(dt, false, player)
-
-    -- Update the player
-    player.x = player.x + 20 * dt
-    player.y = player.y - 300 * dt
-    player:setPosition(player.x, player.y)
-    
 
     -- Print player Position. debug tool, will be removed later
     function love.keypressed(key)
