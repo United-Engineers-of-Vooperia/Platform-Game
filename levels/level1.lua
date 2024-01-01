@@ -49,11 +49,11 @@ end
 function level1:update(dt)
     -- Update music and camera
     chapter1Music:update(dt)
-    --updateCam(dt, false, player)
+    updateCam(dt, false, player)
 
     -- Update the player
     player.x = player.x + 20 * dt
-    player.y = player.y - 5 * dt
+    player.y = player.y - 300 * dt
     player:setPosition(player.x, player.y)
     
 
