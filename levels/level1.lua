@@ -34,9 +34,9 @@ function level1:enter()
     exit.new(world, 1910, 620, 100, 100)            -- Level Exit
 
     -- Setup the Player
-    player:setPosition(220, 600)           -- Sets starting position
-    player:applyForce(0, 1000000000000000) -- Sets a huge downward force, essentailly makes-
-                                           -- player start on the surface below it automatically
+    player:setPosition(220, 600)                    -- Sets starting position
+    player:applyForce(0, 1000000000000000)          -- Sets a huge downward force, essentailly makes-
+                                                    -- player start on the surface below it automatically
 end
 
 --[[
@@ -96,6 +96,7 @@ function level1:draw()
         if debug == true then
             world:draw()
         end
+
     -- Detach the camera
     cam:detach()
 

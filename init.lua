@@ -8,7 +8,7 @@
     this can be copy and pasted to other parts of the code-
     to check for stray variables)
 
-    If text goes by too fast, you can open console with 'alt + F8'
+    If text goes by too fast, you can open console with 'Ctrl + F8'
 ]]
 -- Set the default for Global Variables
 local pre_globals = {}

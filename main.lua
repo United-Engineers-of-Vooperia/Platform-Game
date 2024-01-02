@@ -13,8 +13,30 @@ function love.load()
     Gamestate.registerEvents()
     Gamestate.switch(menu)
 
+    clicked = false
+    clickPos = { x = 0, y = 0 }
+
     -- Play menu music
     menuMusic:play()
+end
+
+-- Handle mouse events
+function love.mousepressed(x, y, button, istouch, presses)
+    if button == 1 then
+        clicked = true
+        clickPos = { x = x, y = y }
+    end
+end
+
+function love.mousereleased(x, y, button, istouch, presses)
+    if button == 1 then
+        clicked = false
+    end
+end
+
+-- Calculate distance for the ruler
+function calculateDistance(x1, y1, x2, y2)
+    return math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 end
 
 -- Function called to draw graphics

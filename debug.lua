@@ -13,7 +13,7 @@ function debugDraw()
         fpsGraph:draw()
         memGraph:draw()
         dtGraph:draw()
-        love.graphics.print("Debug Enabled", centerX + 950, centerY + 520)
+        love.graphics.print("Debug Enabled: Ctrl + F8", centerX + 880, centerY + 520)
     end
 end
 
