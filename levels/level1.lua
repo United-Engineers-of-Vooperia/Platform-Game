@@ -20,9 +20,9 @@ function level1:enter()
     chapter1Music:play()
     -- Reset camera position
     resetCam()
-
+    
     -- Create the environment objects
-    ground.new(world, 220, 1020, 650, 700, 0.06)    -- Start pillar
+    ground.new(world, 360, 1350, 950, 700, 0.06)    -- Start pillar
     ground.new(world, 765, 560, 200, 30, 0.08)      -- Swinging platform
     ground.new(world, 1190, 830, 340, 700, -0.12)   -- Second pillar
     ground.new(world, 1600, 705, 100, 1000, 0.085)  -- Third/tall pillar
@@ -65,7 +65,7 @@ function level1:update(dt)
             print(math.floor(player.x), math.floor(player.y))
         end
     end
-
+    
     -- Update the world
     world:update(dt)
     player:update(dt)
@@ -96,7 +96,6 @@ function level1:draw()
         if debug == true then
             world:draw()
         end
-
     -- Detach the camera
     cam:detach()
 
